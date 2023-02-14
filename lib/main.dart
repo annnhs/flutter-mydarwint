@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Color(0xFFE9EFF3),
+      ),
       initialRoute: '/login',
       getPages: [
         GetPage(
