@@ -25,6 +25,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Color(0xFFE9EFF3),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          hoverColor: Colors.white,
+          fillColor: Colors.white,
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+        ),
       ),
       initialRoute: '/login',
       getPages: [
