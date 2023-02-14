@@ -1,6 +1,6 @@
-# mypage3
+# practice login ui
 
-A new Flutter project.
+A new Flutter project with GetX.
 
 ## Getting Started
 
