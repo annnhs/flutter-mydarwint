@@ -56,15 +56,15 @@ class _AnimatedHoverState extends State<AnimatedHover> {
               });
             },
             overlayColor: MaterialStateProperty.all(Colors.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
             // 색이 변할 때 애니메이션 효과
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               height: widget.size.height,
               width: widget.size.width,
               decoration: BoxDecoration(
                 color: _isHover ? widget.hoverColor : widget.bgColor,
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
                 border: widget.border,
               ),
               child: widget.child,

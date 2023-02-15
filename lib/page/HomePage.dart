@@ -40,13 +40,13 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: TextField(
-                controller: nameController..text = user.name!.value,
+                // controller: nameController..text = user.name!.value,
               ),
             ),
             Container(
-              child: Obx(
-                () => Text('이름 : ${user.name!.value}'),
-              ),
+              // child: Obx(
+              //   () => Text('이름 : ${user.name!.value}'),
+              // ),
             ),
             Container(
               child: ElevatedButton(
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   void changeName() {
     // 우선 이름만
-    user.applyData(name: nameController.text);
+    // user.applyData(name: nameController.text);
   }
 
   void openDialog() {

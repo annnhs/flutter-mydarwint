@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../components/animated_hover.dart';
 import '../components/login_form.dart';
+import '../data/User.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -11,7 +13,6 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-  bool _isHover = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _LogInPageState extends State<LogInPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Get Started',
+                'Log In',
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!

@@ -1,11 +1,20 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mypage3/data/User.dart';
+import 'package:mypage3/model/UserModel.dart';
 
 import 'animated_hover.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({
-    super.key,
-  });
+  LoginForm({ super.key, });
+
+  User user = Get.find();
+
+  String userId = '';
+  String userPw = '';
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +33,9 @@ class LoginForm extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: TextFormField(
-                  onSaved: (id) {},
+                  onSaved: (id) {
+                    userId = id!;
+                  },
                   decoration: const InputDecoration(
                     hintText: 'ID',
                   ),
@@ -43,7 +54,9 @@ class LoginForm extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   child: TextFormField(
-                    onSaved: (pw) {},
+                    onSaved: (pw) {
+                      userPw = pw!;
+                    },
                     obscureText: true,
                     decoration: const InputDecoration(
                       hintText: 'PASSWORD',
@@ -58,7 +71,9 @@ class LoginForm extends StatelessWidget {
               curve: Curves.fastOutSlowIn,
               offset: const Offset(6, 6),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  requestLogin();
+                },
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   minimumSize: const Size(88, 48),
@@ -70,10 +85,43 @@ class LoginForm extends StatelessWidget {
                 ),
                 child: const Text('Log In',),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void requestLogin() async {
+    print('requestLogin 호출됨.');
+
+    var dio = Dio();
+    dio.options.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+    dio.options.responseType = ResponseType.plain;
+
+    var url = 'https://localhost:8001/smc-darwin-tab/v1/log-in';
+
+    var response = await dio.request(
+        url,
+        data: {
+          'requestCode': '1001',
+          'id': userId,
+          'password': userPw,
+        },
+        options: Options(
+          method: 'POST',
+        )
+    );
+
+    print('응답 : ${response.data}');
+
+    var jsonMap = json.decode(response.data);
+
+    var userModel = UserModel.fromJson(jsonMap);
+
+    print('사용자 정보 : ${userModel.data?.body}');
+
+    user.applyModel(model: userModel);
+
   }
 }

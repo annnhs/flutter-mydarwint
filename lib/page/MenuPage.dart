@@ -27,9 +27,9 @@ class _MenuPageState extends State<MenuPage> {
         child: ListView(
           children: [
             Container(
-              child: Obx(
-                () => Text('이름 : ${user.name!.value}'),
-              ),
+              // child: Obx(
+                // () => Text('이름 : ${user.name!.value}'),
+              // ),
             ),
             Container(
               child: ElevatedButton.icon(
