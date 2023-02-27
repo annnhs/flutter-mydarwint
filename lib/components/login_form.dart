@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mypage3/data/User.dart';
 import 'package:mypage3/model/UserModel.dart';
+import 'package:mypage3/util/Util.dart';
 
 import 'animated_hover.dart';
 
@@ -101,27 +102,32 @@ class LoginForm extends StatelessWidget {
 
     var url = 'https://localhost:8001/smc-darwin-tab/v1/log-in';
 
-    var response = await dio.request(
-        url,
-        data: {
-          'requestCode': '1001',
-          'id': userId,
-          'password': userPw,
-        },
-        options: Options(
-          method: 'POST',
-        )
-    );
+    try {
 
-    print('응답 : ${response.data}');
+      var response = await dio.request(
+          url,
+          data: {
+            'requestCode': '1001',
+            'id': userId,
+            'password': userPw,
+          },
+          options: Options(
+            method: 'POST',
+          )
+      );
 
-    var jsonMap = json.decode(response.data);
+      print('응답 : ${response.data}');
 
-    var userModel = UserModel.fromJson(jsonMap);
+      var jsonMap = json.decode(response.data);
 
-    print('사용자 정보 : ${userModel.data?.body}');
+      var userModel = UserModel.fromJson(jsonMap);
 
-    user.applyModel(model: userModel);
+      print('사용자 정보 : ${userModel.data?.body}');
 
+      user.applyModel(model: userModel);
+
+    } catch (err) {
+      print('에러 : $err');
+    }
   }
 }
